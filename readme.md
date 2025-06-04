@@ -1,6 +1,6 @@
-# 🛒 Django Product Management System
+# 🛒 Django Product Inventaris System
 
-Sistem manajemen produk sederhana menggunakan Django. Aplikasi ini memungkinkan pengguna untuk menambahkan, melihat, mengedit, dan menghapus data produk.
+Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan pengguna untuk menambahkan, melihat, mengedit, dan menghapus data barang inventaris.
 
 ## 🚀 Fitur
 
@@ -8,7 +8,6 @@ Sistem manajemen produk sederhana menggunakan Django. Aplikasi ini memungkinkan 
 - 📋 Lihat Daftar Produk
 - ✏️ Edit Produk
 - 🗑️ Hapus Produk
-- 💬 Pesan notifikasi sukses setiap aksi
 - 📄 Menggunakan Django Model, Form, dan Template
 
 ## 🛠️ Teknologi yang Digunakan
@@ -20,24 +19,21 @@ Sistem manajemen produk sederhana menggunakan Django. Aplikasi ini memungkinkan 
 ## 📁 Struktur Proyek Singkat
 
 ```
-Root
-├── product_manager/            # Folder utama Django project
-│   ├── product_manager/
+product_manager/                # Folder utama Django project
+│   ├── inventaris_project/
 │   │   └── ...
 │   │
-│   ├── products/               # Aplikasi produk
-│   │   ├── models.py           # Model produk
-│   │   ├── views.py            # Logic tampilan (CRUD)
-│   │   ├── urls.py             # Routing internal
-│   │   ├── templates/
-│   │   │   └── products/       # Template HTML
-│   │   │
-│   │   ├── db.sqlite3          # Database lokal
-│   │   └── manage.py
-│   │
-│   └── .env.example            # Contoh file variabel lokal
+│   └── barang/                 # Aplikasi produk
+│       ├── models.py           # Model produk
+│       ├── views.py            # Logic tampilan (CRUD)
+│       ├── urls.py             # Routing internal
+│       ├── templates/
+│       │   └── home/           # Template HTML
+│       │
+│       ├── db.sqlite3          # Database lokal
+│       └── manage.py
 │
-├── requirements.txt        # Library yang dibutuhkan dalam project
+├── requirements.txt            # Library yang dibutuhkan dalam project
 └── README.md
 ```
 
@@ -46,11 +42,11 @@ Root
 1. **Clone repository ini**
 
 ```bash
-git clone https://github.com/NaufalAqil18/Tugas-8-PPL.git
-cd Tugas-8-PPL
+git clone https://github.com/NaufalAqil18/inventaris_project.git
+cd inventaris_project
 ```
 
-2. **Aktifkan virtual environment (opsional tapi disarankan)**
+2. **Aktifkan virtual environment (opsional)**
 
 ```bash
 python -m venv env
@@ -60,43 +56,43 @@ env\Scripts\activate     # Windows
 
 3. **Install dependencies**
 
+Install library django agar server dapat dijalankan
+
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Masuk ke directori project**
+4. **Migrasi database**
 
-```bash
-cd product_manager
-```
-
-5. **Copy local variabel**
-
-Buat secret key yang akan digunakan oleh django.
-Secret key dapat anda buat sendiri, ataupun melalui website [ini](https://djecrety.ir/).
-
-Kemudian copy file .env dengan menjalankan code berikut dan tambahkan secret key yang dibuat di file .env.
-
-```bash
-cp .env.example .env
-```
-
-6. **Migrasi database**
+Populasi database dengan migrate
 
 ```bash
 python manage.py migrate
 ```
 
-6. **Jalankan server**
+5. **Jalankan server**
+
+Jalankan server dengan menjalankan perintah berikut:
 
 ```bash
 python manage.py runserver
 ```
 
-7. **Buka di browser**
+6. **Buka di browser**
+
+```bash
+http://localhost:8000
+```
+
+untuk admin page, silahkan buka halaman dibawah, dengan kredensial berikut
+
+```bash
+http://localhost:8000/admin
+```
 
 ```
-http://localhost:8000
+# username: admin
+# password: admin123
 ```
 
 ---
