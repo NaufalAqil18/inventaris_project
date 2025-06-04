@@ -1,275 +1,275 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventaris Barang</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease-out;
+      }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        background: linear-gradient(45deg, #fff, #e0e7ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+        list-style: none;
+      }
+
+      .inventory-item {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .inventory-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .inventory-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .inventory-item:hover::before {
+        transform: scaleX(1);
+      }
+
+      .item-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .item-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .item-name {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0;
+      }
+
+      .item-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+      }
+
+      .quantity-badge {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .location-tag {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .stats-bar {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .stats-text {
+        color: #4a5568;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: white;
+        padding: 60px 20px;
+      }
+
+      .empty-state h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        opacity: 0.8;
+      }
+
+      .empty-state p {
+        font-size: 1.1rem;
+        opacity: 0.7;
+      }
+
+      @media (max-width: 768px) {
         .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #fff, #e0e7ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+          font-size: 2.2rem;
         }
 
         .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            list-style: none;
-        }
-
-        .inventory-item {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .inventory-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .inventory-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .inventory-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .item-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .item-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .item-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin: 0;
+          grid-template-columns: 1fr;
         }
 
         .item-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
+          flex-direction: column;
+          gap: 10px;
+          align-items: stretch;
         }
 
-        .quantity-badge {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
+        .quantity-badge,
         .location-tag {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 5px;
+          justify-content: center;
         }
-
-        .stats-bar {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
-
-        .stats-text {
-            color: #4a5568;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .empty-state {
-            text-align: center;
-            color: white;
-            padding: 60px 20px;
-        }
-
-        .empty-state h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-
-        .empty-state p {
-            font-size: 1.1rem;
-            opacity: 0.7;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .inventory-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .item-details {
-                flex-direction: column;
-                gap: 10px;
-                align-items: stretch;
-            }
-            
-            .quantity-badge,
-            .location-tag {
-                justify-content: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>📦 Daftar Barang</h1>
-            <p>Sistem Inventaris Modern</p>
-        </div>
+      <div class="header">
+        <h1>📦 Daftar Barang</h1>
+        <p>Sistem Inventaris Modern</p>
+      </div>
 
-        <!-- Stats Bar (akan menampilkan jumlah total item jika ada data) -->
-        <div class="stats-bar">
-            <div class="stats-text">
-                Total Item: <strong id="total-count">0</strong>
+      <!-- Stats Bar (akan menampilkan jumlah total item jika ada data) -->
+      <div class="stats-bar">
+        <div class="stats-text">
+          Total Item: <strong id="total-count">0</strong>
+        </div>
+      </div>
+
+      <!-- Inventory Grid -->
+      <ul class="inventory-grid" id="inventory-list">
+        <!-- Template untuk demonstrasi - ini akan diganti dengan loop Django -->
+        <!-- {% for b in barang %} -->
+        <li class="inventory-item">
+          <div class="item-header">
+            <div class="item-icon">📦</div>
+            <h3 class="item-name">{{ b.nama }}</h3>
+          </div>
+          <div class="item-details">
+            <div class="quantity-badge">
+              <span>📊</span>
+              {{ b.jumlah }} unit
             </div>
-        </div>
+            <div class="location-tag">
+              <span>📍</span>
+              {{ b.lokasi }}
+            </div>
+          </div>
+        </li>
+        <!-- {% endfor %} -->
+      </ul>
 
-        <!-- Inventory Grid -->
-        <ul class="inventory-grid" id="inventory-list">
-            <!-- Template untuk demonstrasi - ini akan diganti dengan loop Django -->
-            <!-- {% for b in barang %} -->
-            <li class="inventory-item">
-                <div class="item-header">
-                    <div class="item-icon">📦</div>
-                    <h3 class="item-name">{{ b.nama }}</h3>
-                </div>
-                <div class="item-details">
-                    <div class="quantity-badge">
-                        <span>📊</span>
-                        {{ b.jumlah }} unit
-                    </div>
-                    <div class="location-tag">
-                        <span>📍</span>
-                        {{ b.lokasi }}
-                    </div>
-                </div>
-            </li>
-            <!-- {% endfor %} -->
-        </ul>
-
-        <!-- Empty State (tampil jika tidak ada data) -->
-        <div class="empty-state" id="empty-state" style="display: none;">
-            <h2>📭 Tidak Ada Barang</h2>
-            <p>Belum ada item yang terdaftar dalam inventaris</p>
-        </div>
+      <!-- Empty State (tampil jika tidak ada data) -->
+      <div class="empty-state" id="empty-state" style="display: none">
+        <h2>📭 Tidak Ada Barang</h2>
+        <p>Belum ada item yang terdaftar dalam inventaris</p>
+      </div>
     </div>
 
     <script>
-        // Script untuk menghitung total item (akan otomatis bekerja dengan data Django)
-        document.addEventListener('DOMContentLoaded', function() {
-            const inventoryItems = document.querySelectorAll('.inventory-item');
-            const totalCount = document.getElementById('total-count');
-            const emptyState = document.getElementById('empty-state');
-            const inventoryList = document.getElementById('inventory-list');
-            
-            if (inventoryItems.length === 0) {
-                emptyState.style.display = 'block';
-                inventoryList.style.display = 'none';
-            } else {
-                totalCount.textContent = inventoryItems.length;
-            }
-        });
+      // Script untuk menghitung total item (akan otomatis bekerja dengan data Django)
+      document.addEventListener("DOMContentLoaded", function () {
+        const inventoryItems = document.querySelectorAll(".inventory-item");
+        const totalCount = document.getElementById("total-count");
+        const emptyState = document.getElementById("empty-state");
+        const inventoryList = document.getElementById("inventory-list");
+
+        if (inventoryItems.length === 0) {
+          emptyState.style.display = "block";
+          inventoryList.style.display = "none";
+        } else {
+          totalCount.textContent = inventoryItems.length;
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
