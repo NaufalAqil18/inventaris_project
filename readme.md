@@ -25,7 +25,8 @@ Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan
 
 ## 📁 Struktur Proyek Singkat
 
-product_manager/ # Folder utama Django project (atau nama root folder Anda)
+```
+product_manager/ # Folder utama Django project
 │ ├── inventaris_project/ # Folder konfigurasi Django project
 │ │ ├── settings.py
 │ │ ├── urls.py
@@ -39,14 +40,15 @@ product_manager/ # Folder utama Django project (atau nama root folder Anda)
 │ ├── templates/
 │ │ └── barang/
 │ │ └── home.html # Template HTML untuk daftar barang
-│ ├── urls.py # Routing internal aplikasi 'barang' (jika ada)
+│ ├── urls.py # Routing internal
 │ ├── views.py # Logic untuk menampilkan daftar barang dan filter
 │ └── ...
 │
-├── db.sqlite3 # Database lokal (biasanya ada di .gitignore)
+├── db.sqlite3 # Database lokal
 ├── manage.py # Utilitas command-line Django
 ├── requirements.txt # Library yang dibutuhkan dalam project
 └── README.md
+```
 
 ## 🧑‍💻 Instalasi dan Menjalankan Proyek
 
