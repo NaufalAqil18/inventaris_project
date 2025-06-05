@@ -25,28 +25,29 @@ Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan
 
 ## 📁 Struktur Proyek Singkat
 
-inventaris_project/
-├── inventaris_project/
-│ 	├── settings.py
-│ 	├── urls.py
-│ 	└── ...
-│
-├── barang/
-│ 	├── admin.py
-│ 	├── models.py
-│ 	├── views.py
-│ 	├── urls.py
-│ 	├── templates/
-│ 	│ 	├── barang/
-│ 	│ 	└── home.html
-│ 	└── ...
-│
-├── db.sqlite3
-├── manage.py
-├── requirements.txt
-├── kategori_data.json # (Data awal untuk kategori)
-└── barang_data.json # (Data awal untuk barang)
-
+```
+inventaris_project/  
+├── inventaris_project/  
+│	├── settings.py  
+│	├── urls.py  
+│	└── ...  
+│  
+├── barang/  
+│	├── admin.py    
+│	├── models.py  
+│	├── views.py  
+│	├── urls.py  
+│	├── templates/  
+│	│	├── barang/  
+│	│	└── home.html  
+│	└── ...  
+│  
+├── db.sqlite3  
+├── manage.py  
+├── requirements.txt  
+├── kategori_data.json # (Data awal untuk kategori)  
+└── barang_data.json # (Data awal untuk barang)  
+```
 ## 🧑‍💻 Instalasi dan Menjalankan Proyek
 
 1. **Clone repository ini**
