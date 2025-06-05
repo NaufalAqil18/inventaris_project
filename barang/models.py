@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Kategori(models.Model):
     nama = models.CharField(max_length=50, unique=True, verbose_name="Nama Kategori")
@@ -15,7 +16,7 @@ class Barang(models.Model):
     deskripsi = models.TextField()
     jumlah = models.PositiveIntegerField()
     lokasi = models.CharField(max_length=100)
-    tanggal_ditambahkan = models.DateTimeField(auto_now_add=True)
+    tanggal_ditambahkan = models.DateTimeField(default=timezone.now)
     # Tambahkan ForeignKey ke Kategori
     # models.SET_NULL: Jika kategori dihapus, field kategori pada barang akan di-set NULL.
     # null=True: Memungkinkan field ini kosong di database.

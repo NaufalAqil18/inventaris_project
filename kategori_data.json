@@ -1,0 +1,42 @@
+[
+  {
+    "model": "barang.kategori",
+    "pk": 1,
+    "fields": {
+      "nama": "Elektronik",
+      "deskripsi": "Peralatan berbasis listrik dan teknologi."
+    }
+  },
+  {
+    "model": "barang.kategori",
+    "pk": 2,
+    "fields": {
+      "nama": "Perabot",
+      "deskripsi": "Peralatan atau furnitur untuk keperluan ruang."
+    }
+  },
+  {
+    "model": "barang.kategori",
+    "pk": 3,
+    "fields": {
+      "nama": "Alat Tulis",
+      "deskripsi": "Peralatan menulis dan perlengkapan sekolah/kantor."
+    }
+  },
+  {
+    "model": "barang.kategori",
+    "pk": 4,
+    "fields": {
+      "nama": "Kebersihan",
+      "deskripsi": "Barang-barang untuk menjaga kebersihan lingkungan."
+    }
+  },
+  {
+    "model": "barang.kategori",
+    "pk": 5,
+    "fields": {
+      "nama": "Lainnya",
+      "deskripsi": "Kategori barang yang tidak termasuk dalam kategori lain."
+    }
+  }
+]

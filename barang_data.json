@@ -1,0 +1,112 @@
+[
+  {
+    "model": "barang.barang",
+    "pk": 1,
+    "fields": {
+      "nama": "Laptop ASUS ROG",
+      "deskripsi": "Laptop untuk keperluan multimedia dan pemrograman",
+      "jumlah": 3,
+      "lokasi": "Ruang IT",
+      "kategori": 1
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 2,
+    "fields": {
+      "nama": "Proyektor Epson",
+      "deskripsi": "Digunakan untuk presentasi kelas",
+      "jumlah": 2,
+      "lokasi": "Ruang Multimedia",
+      "kategori": 1
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 3,
+    "fields": {
+      "nama": "Meja Belajar",
+      "deskripsi": "Meja kayu untuk ruang kelas",
+      "jumlah": 20,
+      "lokasi": "Ruang Kelas A",
+      "kategori": 2
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 4,
+    "fields": {
+      "nama": "Kursi Lipat",
+      "deskripsi": "Kursi tambahan untuk tamu",
+      "jumlah": 15,
+      "lokasi": "Gudang",
+      "kategori": 2
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 5,
+    "fields": {
+      "nama": "Papan Tulis",
+      "deskripsi": "Papan tulis putih magnetik",
+      "jumlah": 5,
+      "lokasi": "Ruang Kelas B",
+      "kategori": 3
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 6,
+    "fields": {
+      "nama": "Spidol Boardmarker",
+      "deskripsi": "Spidol warna hitam dan biru",
+      "jumlah": 40,
+      "lokasi": "Gudang",
+      "kategori": 3
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 7,
+    "fields": {
+      "nama": "Sapu Lantai",
+      "deskripsi": "Sapu dengan gagang panjang untuk kebersihan kelas",
+      "jumlah": 8,
+      "lokasi": "Lemari Peralatan",
+      "kategori": 4
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 8,
+    "fields": {
+      "nama": "Ember Pel",
+      "deskripsi": "Ember dan alat pel untuk kebersihan lantai",
+      "jumlah": 6,
+      "lokasi": "Gudang",
+      "kategori": 4
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 9,
+    "fields": {
+      "nama": "Kabel Roll",
+      "deskripsi": "Kabel panjang untuk keperluan listrik",
+      "jumlah": 4,
+      "lokasi": "Ruang Server",
+      "kategori": 5
+    }
+  },
+  {
+    "model": "barang.barang",
+    "pk": 10,
+    "fields": {
+      "nama": "Stop Kontak",
+      "deskripsi": "Terminal listrik tambahan",
+      "jumlah": 10,
+      "lokasi": "Ruang Kelas C",
+      "kategori": 5
+    }
+  }
+]
