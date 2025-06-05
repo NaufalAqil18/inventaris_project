@@ -25,79 +25,84 @@ Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan
 
 ## 📁 Struktur Proyek Singkat
 
-```
-product_manager/ # Folder utama Django project
-│ ├── inventaris_project/ # Folder konfigurasi Django project
-│ │ ├── settings.py
-│ │ ├── urls.py
-│ │ └── ...
-│ │
-│ └── barang/ # Aplikasi produk
-│ ├── admin.py # Konfigurasi admin untuk Barang dan Kategori
-│ ├── apps.py
-│ ├── migrations/
-│ ├── models.py # Model Barang dan Kategori
-│ ├── templates/
-│ │ └── barang/
-│ │ └── home.html # Template HTML untuk daftar barang
-│ ├── urls.py # Routing internal
-│ ├── views.py # Logic untuk menampilkan daftar barang dan filter
+inventaris_project/
+├── inventaris_project/
+│ ├── settings.py
+│ ├── urls.py
 │ └── ...
 │
-├── db.sqlite3 # Database lokal
-├── manage.py # Utilitas command-line Django
-├── requirements.txt # Library yang dibutuhkan dalam project
-└── README.md
-```
+├── barang/
+│ ├── admin.py
+│ ├── models.py
+│ ├── views.py
+│ ├── urls.py
+│ ├── templates/
+│ │ └── barang/
+│ │ └── home.html
+│ └── ...
+│
+├── db.sqlite3
+├── manage.py
+├── requirements.txt
+├── kategori_data.json # (Data awal untuk kategori)
+└── barang_data.json # (Data awal untuk barang)
+
 
 ## 🧑‍💻 Instalasi dan Menjalankan Proyek
 
-1.  **Clone repository ini**
+1. **Clone repository ini**
 
     ```bash
     git clone https://github.com/NaufalAqil18/inventaris_project.git
     cd inventaris_project
     ```
 
-2.  **Buat dan Aktifkan virtual environment (direkomendasikan)**
+2. **Buat dan Aktifkan virtual environment (direkomendasikan)**
 
     ```bash
     python -m venv env
     source env/bin/activate  # Linux/macOS
     # atau
-    # env\Scripts\activate     # Windows
+    env\Scripts\activate     # Windows
     ```
 
-3.  **Install dependencies**
-    Pastikan virtual environment aktif, kemudian install library yang dibutuhkan:
+3. **Install dependencies**
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **Migrasi database**
-    Perintah ini akan membuat tabel-tabel database berdasarkan model Anda:
+4. **Migrasi database**
 
     ```bash
     python manage.py migrate
     ```
 
-5.  **Buat Superuser (untuk akses Admin)**
-    Jika Anda belum memiliki superuser, buat dengan perintah:
+5. **Buat Superuser (untuk akses Admin)**
 
     ```bash
     python manage.py createsuperuser
     ```
 
-    Ikuti instruksi di terminal untuk menentukan username, email (opsional), dan password.
+6. **Muat Data Awal (Opsional tapi Disarankan)**
 
-6.  **Jalankan server pengembangan**
+    Jika tersedia file `kategori_data.json` dan `barang_data.json`, jalankan:
+
+    ```bash
+    python manage.py loaddata kategori_data.json
+    python manage.py loaddata barang_data.json
+    ```
+
+    Pastikan field yang wajib (seperti `tanggal_ditambahkan`) sudah diisi di dalam file.
+
+7. **Jalankan server pengembangan**
 
     ```bash
     python manage.py runserver
     ```
 
-7.  **Buka di browser**
+8. **Akses dari browser**
+
     - Halaman utama pengguna:
       ```
       http://localhost:8000
@@ -106,7 +111,8 @@ product_manager/ # Folder utama Django project
       ```
       http://localhost:8000/admin
       ```
-      Login menggunakan kredensial superuser yang telah Anda buat.
+
+      Login dengan akun superuser yang telah Anda buat.
 
 ## 🙋‍♂️ Kontribusi
 
