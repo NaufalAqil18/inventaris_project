@@ -1,102 +1,111 @@
 # 🛒 Django Product Inventaris System
 
-Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan pengguna untuk menambahkan, melihat, mengedit, dan menghapus data barang inventaris.
+Sistem inventaris produk sederhana menggunakan Django. Aplikasi ini memungkinkan pengguna untuk melihat daftar barang, memfilternya berdasarkan kategori, dan bagi admin untuk mengelola data barang serta kategori inventaris.
 
 ## 🚀 Fitur
 
-- ✅ Tambah Produk
-- 📋 Lihat Daftar Produk
-- ✏️ Edit Produk
-- 🗑️ Hapus Produk
-- 📄 Menggunakan Django Model, Form, dan Template
+**Fitur Umum Pengguna (Akses Publik):**
+
+- 📋 Lihat Daftar Produk beserta Kategori.
+- 🔍 Filter Produk berdasarkan Kategori.
+
+**Fitur Admin (Memerlukan Login):**
+
+- ✅ Tambah, Lihat, Edit, Hapus Produk (Barang).
+- ➕ Tambah, Lihat, Edit, Hapus Kategori Produk.
+- 🔗 Hubungkan Produk dengan Kategori.
+- 📄 Menggunakan Django Model, Form, dan Template (Admin bawaan & kustom).
 
 ## 🛠️ Teknologi yang Digunakan
 
-- Python 3.11
+- Python 3.11 (atau versi Python yang Anda gunakan)
 - Django 5.2
 - HTML (Template Django)
+- SQLite (Default database)
 
 ## 📁 Struktur Proyek Singkat
 
-```
-product_manager/                # Folder utama Django project
-│   ├── inventaris_project/
-│   │   └── ...
-│   │
-│   └── barang/                 # Aplikasi produk
-│       ├── models.py           # Model produk
-│       ├── views.py            # Logic tampilan (CRUD)
-│       ├── urls.py             # Routing internal
-│       ├── templates/
-│       │   └── home/           # Template HTML
-│       │
-│       ├── db.sqlite3          # Database lokal
-│       └── manage.py
+product_manager/ # Folder utama Django project (atau nama root folder Anda)
+│ ├── inventaris_project/ # Folder konfigurasi Django project
+│ │ ├── settings.py
+│ │ ├── urls.py
+│ │ └── ...
+│ │
+│ └── barang/ # Aplikasi produk
+│ ├── admin.py # Konfigurasi admin untuk Barang dan Kategori
+│ ├── apps.py
+│ ├── migrations/
+│ ├── models.py # Model Barang dan Kategori
+│ ├── templates/
+│ │ └── barang/
+│ │ └── home.html # Template HTML untuk daftar barang
+│ ├── urls.py # Routing internal aplikasi 'barang' (jika ada)
+│ ├── views.py # Logic untuk menampilkan daftar barang dan filter
+│ └── ...
 │
-├── requirements.txt            # Library yang dibutuhkan dalam project
+├── db.sqlite3 # Database lokal (biasanya ada di .gitignore)
+├── manage.py # Utilitas command-line Django
+├── requirements.txt # Library yang dibutuhkan dalam project
 └── README.md
-```
 
 ## 🧑‍💻 Instalasi dan Menjalankan Proyek
 
-1. **Clone repository ini**
+1.  **Clone repository ini**
 
-```bash
-git clone https://github.com/NaufalAqil18/inventaris_project.git
-cd inventaris_project
-```
+    ```bash
+    git clone https://github.com/NaufalAqil18/inventaris_project.git
+    cd inventaris_project
+    ```
 
-2. **Aktifkan virtual environment (opsional)**
+2.  **Buat dan Aktifkan virtual environment (direkomendasikan)**
 
-```bash
-python -m venv env
-source env/bin/activate  # Linux/macOS
-env\Scripts\activate     # Windows
-```
+    ```bash
+    python -m venv env
+    source env/bin/activate  # Linux/macOS
+    # atau
+    # env\Scripts\activate     # Windows
+    ```
 
-3. **Install dependencies**
+3.  **Install dependencies**
+    Pastikan virtual environment aktif, kemudian install library yang dibutuhkan:
 
-Install library django agar server dapat dijalankan
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-```bash
-pip install -r requirements.txt
-```
+4.  **Migrasi database**
+    Perintah ini akan membuat tabel-tabel database berdasarkan model Anda:
 
-4. **Migrasi database**
+    ```bash
+    python manage.py migrate
+    ```
 
-Populasi database dengan migrate
+5.  **Buat Superuser (untuk akses Admin)**
+    Jika Anda belum memiliki superuser, buat dengan perintah:
 
-```bash
-python manage.py migrate
-```
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-5. **Jalankan server**
+    Ikuti instruksi di terminal untuk menentukan username, email (opsional), dan password.
 
-Jalankan server dengan menjalankan perintah berikut:
+6.  **Jalankan server pengembangan**
 
-```bash
-python manage.py runserver
-```
+    ```bash
+    python manage.py runserver
+    ```
 
-6. **Buka di browser**
-
-```bash
-http://localhost:8000
-```
-
-untuk admin page, silahkan buka halaman dibawah, dengan kredensial berikut
-
-```bash
-http://localhost:8000/admin
-```
-
-```
-# username: admin
-# password: admin123
-```
-
----
+7.  **Buka di browser**
+    - Halaman utama pengguna:
+      ```
+      http://localhost:8000
+      ```
+    - Halaman Admin:
+      ```
+      http://localhost:8000/admin
+      ```
+      Login menggunakan kredensial superuser yang telah Anda buat.
 
 ## 🙋‍♂️ Kontribusi
 
-Silakan fork dan pull request jika ingin berkontribusi atau menambahkan fitur lain.
+Silakan fork repository ini dan buat pull request jika Anda ingin berkontribusi atau menambahkan fitur lain.
