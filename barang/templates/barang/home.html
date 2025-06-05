@@ -113,7 +113,7 @@
         justify-content: center;
         margin-right: 15px;
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.8rem; /* Sedikit disesuaikan agar emoji terlihat lebih baik */
         font-weight: bold;
       }
 
@@ -123,6 +123,15 @@
         color: #2d3748;
         margin: 0;
       }
+      
+      .item-category { /* Style untuk teks kategori */
+        font-size: 0.9rem; 
+        color: #555; 
+        margin-bottom: 10px; 
+        /* padding-left: 65px; Disesuaikan atau dihilangkan jika tidak perlu indentasi khusus */
+        margin-left: 65px; /* Memberi indentasi agar sejajar dengan nama barang jika ikon di kiri */
+      }
+
 
       .item-details {
         display: flex;
@@ -140,7 +149,7 @@
         font-size: 0.9rem;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 8px; /* Sedikit ditambah jaraknya */
       }
 
       .location-tag {
@@ -153,7 +162,7 @@
         border: 1px solid rgba(102, 126, 234, 0.2);
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 8px; /* Sedikit ditambah jaraknya */
       }
 
       .stats-bar {
@@ -170,6 +179,27 @@
         color: #4a5568;
         font-size: 1.1rem;
         font-weight: 500;
+      }
+      
+      .filter-bar { /* Style untuk filter bar */
+        text-align: center; 
+        margin-bottom: 20px; 
+        background: rgba(255,255,255,0.85); 
+        padding: 15px; 
+        border-radius: 10px; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .filter-bar label {
+        margin-right: 10px; 
+        font-weight: 500; 
+        color: #333;
+      }
+      
+      .filter-bar select {
+        padding: 8px 12px; 
+        border-radius: 5px; 
+        border: 1px solid #ccc;
       }
 
       .empty-state {
@@ -197,6 +227,11 @@
         .inventory-grid {
           grid-template-columns: 1fr;
         }
+        
+        .item-category {
+            margin-left: 0; /* Hapus indentasi di mobile */
+            padding-left: 15px; /* Beri padding agar tidak terlalu mepet */
+        }
 
         .item-details {
           flex-direction: column;
@@ -218,58 +253,86 @@
         <p>Sistem Inventaris Modern</p>
       </div>
 
-      <!-- Stats Bar (akan menampilkan jumlah total item jika ada data) -->
+      <div class="filter-bar">
+        <form method="GET" action="{% url 'home' %}">
+          <label for="kategori-select">Filter Kategori:</label>
+          <select name="kategori_id" id="kategori-select" onchange="this.form.submit()">
+            <option value="">Semua Kategori</option>
+            {% for kat in kategori_tersedia %}
+              <option value="{{ kat.id }}" {% if kat.id == kategori_dipilih_id %}selected{% endif %}>
+                {{ kat.nama }}
+              </option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+
       <div class="stats-bar">
         <div class="stats-text">
-          Total Item: <strong id="total-count">0</strong>
+          Total Item: <strong id="total-count">{{ barang|length }}</strong>
         </div>
       </div>
 
-      <!-- Inventory Grid -->
+      {% if barang %}
       <ul class="inventory-grid" id="inventory-list">
-        <!-- Template untuk demonstrasi - ini akan diganti dengan loop Django -->
-        <!-- {% for b in barang %} -->
+        {% for b in barang %}
         <li class="inventory-item">
           <div class="item-header">
-            <div class="item-icon">📦</div>
+            <div class="item-icon">🛍️</div> 
             <h3 class="item-name">{{ b.nama }}</h3>
           </div>
+          {% if b.kategori %}
+          <p class="item-category"> 
+            Kategori: <strong>{{ b.kategori.nama }}</strong>
+          </p>
+          {% endif %}
           <div class="item-details">
             <div class="quantity-badge">
-              <span>📊</span>
-              {{ b.jumlah }} unit
+              <span>🔢</span> {{ b.jumlah }} unit
             </div>
             <div class="location-tag">
-              <span>📍</span>
-              {{ b.lokasi }}
+              <span>📍</span> {{ b.lokasi }}
             </div>
           </div>
         </li>
-        <!-- {% endfor %} -->
+        {% endfor %}
       </ul>
-
-      <!-- Empty State (tampil jika tidak ada data) -->
-      <div class="empty-state" id="empty-state" style="display: none">
+      {% else %}
+      <div class="empty-state" id="empty-state">
         <h2>📭 Tidak Ada Barang</h2>
-        <p>Belum ada item yang terdaftar dalam inventaris</p>
+        <p>Belum ada item yang terdaftar atau sesuai dengan filter Anda.</p>
       </div>
+      {% endif %}
     </div>
 
     <script>
-      // Script untuk menghitung total item (akan otomatis bekerja dengan data Django)
+      // Script ini tidak lagi diperlukan jika total item dihitung dari Django context
+      // dan empty state di-handle dengan struktur 'if barang' di template Django
+
+      /*
       document.addEventListener("DOMContentLoaded", function () {
         const inventoryItems = document.querySelectorAll(".inventory-item");
         const totalCount = document.getElementById("total-count");
-        const emptyState = document.getElementById("empty-state");
-        const inventoryList = document.getElementById("inventory-list");
+        const emptyState = document.getElementById("empty-state"); // Sudah di-handle Django
+        const inventoryList = document.getElementById("inventory-list"); // Sudah di-handle Django
 
-        if (inventoryItems.length === 0) {
-          emptyState.style.display = "block";
-          inventoryList.style.display = "none";
-        } else {
-          totalCount.textContent = inventoryItems.length;
-        }
+        // Total count sekarang diisi dari context Django {{ barang|length }}
+        // if (totalCount && inventoryItems.length > 0) {
+        //   totalCount.textContent = inventoryItems.length;
+        // } else if (totalCount) {
+        //   totalCount.textContent = 0;
+        // }
+
+        // Empty state sekarang di-handle oleh template Django dengan struktur 'if barang ... else ... endif'
+        // if (inventoryItems.length === 0) {
+        //   if(emptyState) emptyState.style.display = "block";
+        //   if(inventoryList) inventoryList.style.display = "none";
+        // } else {
+        //   if(emptyState) emptyState.style.display = "none";
+        //   if(inventoryList) inventoryList.style.display = "grid"; // Pastikan display grid jika ada item
+        // }
       });
+      */
     </script>
   </body>
 </html>
